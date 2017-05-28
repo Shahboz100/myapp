@@ -1,0 +1,45 @@
+<resources>
+    <string name="app_name">Cargo</string>
+    <string name="client">Отправить груз</string>
+
+    <string name="driver">Я водитель грузовика</string>
+    <string name="login">Войти</string>
+
+    <string name="registration">Регистрация</string>
+    <string name="title_activity_login_driver">loginDriver</string>
+
+    <string name="phone">Ваш номер</string>
+    <string name="password">Пароль</string>
+
+    <string name="navigation_drawer_open">Открыть панель навигации</string>
+    <string name="navigation_drawer_close">Закрыть панель навигации</string>
+    <!-- Меню -->
+    <string name="ads">Объявления</string>
+    <string name="location">Местоположение</string>
+
+    <string name="settings">Настройки</string>
+    <string name="cars">Мои машины</string>
+    <!--Конец меню-->
+    <string name="action_settings">Настройки</string>
+
+
+    <!--Водитель-->
+    <string name="driver_name">Name</string>
+    <string name="driver_surname">Surname</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_start">startActivity</string>
+
+    <string name="register">Регистрация</string>
+    <!--Конец водителя-->
+
+    <!--Форма входа-->
+    <string name="logo">Лого</string>
+    <string name="byline">Что то крутое!</string>
+    <!--Конец формы входа-->
+
+    <!--Предупреждения-->
+    <string name="f_login">Не правельный логин/пароль</string>
+    <!-- конец Предупреждений-->
+</resources>

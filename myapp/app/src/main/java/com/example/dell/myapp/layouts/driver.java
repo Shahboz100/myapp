@@ -3,8 +3,8 @@ package com.example.dell.myapp.layouts;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -17,6 +17,7 @@ import android.content.Context;
 import android.widget.Toast;
 
 import com.example.dell.myapp.R;
+import com.example.dell.myapp.fragments.AdsFragment;
 
 
 public class driver extends AppCompatActivity
@@ -30,6 +31,7 @@ public class driver extends AppCompatActivity
     public static final String APP_PREFERENCES_TEL = "tel";
     public static final String APP_PREFERENCES_PASSWORD = "password";
     private SharedPreferences mSettings;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +50,6 @@ public class driver extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
 
         //settings = new settingsFragment();
         mSettings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
@@ -95,21 +96,21 @@ public class driver extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-       // android.support.v4.app.FragmentTransaction ftruns = getSupportFragmentManager().beginTransaction();
+        FragmentTransaction ftruns = getSupportFragmentManager().beginTransaction();
 
         if (id == R.id.nav_ads) {
-            //android.support.v4.app.FragmentTransaction replace = ftruns.replace(R.id.conteyner, ads);
-            Toast.makeText(getApplicationContext(),"Объявления", Toast.LENGTH_SHORT).show();
+            ftruns.replace(R.id.container, AdsFragment.newInstance());
+            Toast.makeText(getApplicationContext(), "Объявления", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_location) {
 
         } else if (id == R.id.nav_cars) {
 
         } else if (id == R.id.nav_settings) {
-    //        android.support.v4.app.FragmentTransaction replace = ftruns.replace(R.id.settings_fragment, settings);
+            //        android.support.v4.app.FragmentTransaction replace = ftruns.replace(R.id.settings_fragment, settings);
         } else if (id == R.id.nav_send) {
 
         }
-      //  ftruns.commit();
+        ftruns.commit();
         item.setChecked(true);
         // Выводим выбранный пункт в заголовке
         setTitle(item.getTitle());
@@ -120,14 +121,15 @@ public class driver extends AppCompatActivity
         return true;
     }
 
-    public void setName(){
+    public void setName() {
         Intent intent = getIntent();
-        TextView d_name = (TextView)findViewById(R.id.name_driver);
-        TextView byline = (TextView)findViewById(R.id.byline);
+        TextView d_name = (TextView) findViewById(R.id.name_driver);
+        TextView byline = (TextView) findViewById(R.id.byline);
         token = intent.getStringExtra("token");
-        d_name.setText(intent.getStringExtra("surname")+" "+intent.getStringExtra("name"));
-        byline.setText("+"+intent.getStringExtra("tel"));
+        d_name.setText(intent.getStringExtra("surname") + " " + intent.getStringExtra("name"));
+        byline.setText("+" + intent.getStringExtra("tel"));
     }
+
     @Override
     protected void onPause() {
         super.onPause();
@@ -135,9 +137,9 @@ public class driver extends AppCompatActivity
         Intent intent = getIntent();
         SharedPreferences.Editor editor = mSettings.edit();
         editor.putString(APP_PREFERENCES_NAME, intent.getStringExtra("name"));
-        editor.putString(APP_PREFERENCES_SURNAME,intent.getStringExtra("surname"));
-        editor.putString(APP_PREFERENCES_PASSWORD,intent.getStringExtra("password"));
-        editor.putString(APP_PREFERENCES_TEL,intent.getStringExtra("tel"));
+        editor.putString(APP_PREFERENCES_SURNAME, intent.getStringExtra("surname"));
+        editor.putString(APP_PREFERENCES_PASSWORD, intent.getStringExtra("password"));
+        editor.putString(APP_PREFERENCES_TEL, intent.getStringExtra("tel"));
         editor.apply();
     }
 }
